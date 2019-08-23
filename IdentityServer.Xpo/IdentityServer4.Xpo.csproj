@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <PackageId>hoofa.IdentityServer4.Xpo</PackageId>
+    <Authors>hoofa</Authors>
+    <Description>Devexpress XPO persistence layer for IdentityServer4</Description>
+    <Copyright>Copyright ©2019 hoofa</Copyright>
+    <PackageProjectUrl>https://github.com/hoofa/IdentityServer4.Xpo</PackageProjectUrl>
+    <PackageTags>IdentityServer4, Devexpress, XPO</PackageTags>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/hoofa/IdentityServer4.Xpo.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>dependencies fix</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="DevExpress.Xpo" Version="19.1.4" />
+    <PackageReference Include="IdentityServer4.AspNetIdentity" Version="2.5.0" />
+  </ItemGroup>
+
+</Project>
