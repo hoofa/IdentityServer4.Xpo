@@ -30,7 +30,7 @@ namespace Test.Framework.App_Start
                 RedirectUri = "http://localhost:65061",
                 PostLogoutRedirectUri = "http://localhost:65061",
                 ClientId = "ro.client",
-                //ClientSecret = "secret",
+                ClientSecret = "secret",
                 ResponseType = OpenIdConnectResponseType.IdToken,//"id_token",
                 //Scope = "openid profile api1 offline_access",
                 UseTokenLifetime = false,
@@ -55,7 +55,13 @@ namespace Test.Framework.App_Start
                             }
                         }
                         return Task.FromResult(0);
-                    }
+                    },
+                    AuthenticationFailed= (notification => {
+                        notification.HandleResponse();
+                        notification .Response.Redirect("/");
+                        return Task.FromResult(0);
+                    })
+
                 }
             });
 
@@ -63,7 +69,7 @@ namespace Test.Framework.App_Start
             (new IdentityServerBearerTokenAuthenticationOptions
             {
                 AuthenticationMode = AuthenticationMode.Active,
-                Authority = "http://localhost:5343",
+                Authority = "http://localhost:5343/",
                 RequiredScopes = new[] { "api1" },
             });
 

@@ -52,15 +52,24 @@ namespace Test.Core
 
             services.AddBimAuthentication(Configuration, (options) =>
              {
-                //implicit 模式不需要ClientSecret和Scope
-                #region Hybrid flow
-                //options.ClientSecret = Configuration.GetSection("IdentityServer:Client:ClientSecret").Value;
-                // options.ResponseType = OpenIdConnectResponseType.CodeIdToken;
-                // options.Scope.Add(Configuration.GetSection("IdentityServer:Audience").Value);
-                // options.Scope.Add("offline_access");
-                #endregion
-                //options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "UserId");
-            });
+                 //implicit 模式不需要ClientSecret和Scope
+                 #region Hybrid flow
+                 //options.ClientSecret = Configuration.GetSection("IdentityServer:Client:ClientSecret").Value;
+                 // options.ResponseType = OpenIdConnectResponseType.CodeIdToken;
+                 // options.Scope.Add(Configuration.GetSection("IdentityServer:Audience").Value);
+                 // options.Scope.Add("offline_access");
+                 #endregion
+                 //options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "UserId");
+
+                 options.Events = new OpenIdConnectEvents
+                 {
+                     OnRemoteFailure = context => {
+                         context.Response.Redirect("/");
+                         context.HandleResponse();
+                         return Task.FromResult(0);
+                     }
+                 };
+             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
